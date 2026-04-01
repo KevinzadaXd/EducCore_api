@@ -8,6 +8,5 @@ import java.util.List;
 @Repository
 public interface BannerRegisterRepository extends JpaRepository<BannerRegister, Long> {
 
-    // Este método buscará no banco apenas os banners onde a coluna 'status' for true
     List<BannerRegister> findByStatusTrue();
 }

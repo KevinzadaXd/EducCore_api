@@ -17,6 +17,6 @@ public class BannerRegisterController {
 
     @GetMapping
     public List<BannerRegister> getActiveBanners() {
-        return repository.findByStatusTrue(); // Retorna apenas o que estiver com status true
+        return repository.findByStatusTrue();
     }
 }

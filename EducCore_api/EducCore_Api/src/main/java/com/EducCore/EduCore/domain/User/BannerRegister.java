@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "banner_register") // Nome exato da sua tabela no Supabase
+@Table(name = "banner_register")
 @Getter
 @Setter
 public class BannerRegister {
