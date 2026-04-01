@@ -38,6 +38,8 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/banners").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/icons").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/banner-register").permitAll()
                         // Permite acessar o console do banco H2 pelo navegador
                         .requestMatchers("/h2-console/**").permitAll()
                         .anyRequest().authenticated()
