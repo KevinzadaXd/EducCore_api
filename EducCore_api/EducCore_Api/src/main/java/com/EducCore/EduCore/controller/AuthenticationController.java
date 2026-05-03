@@ -9,10 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("auth")
+@Tag(name = "Autenticação", description = "Endpoints para login e registro de usuários")
 public class AuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;

@@ -5,11 +5,13 @@ import com.EducCore.EduCore.repositories.BannerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/banners")
+@Tag(name = "Banners", description = "Endpoints para gerenciamento de banners da escola")
 public class BannerController {
 
     @Autowired

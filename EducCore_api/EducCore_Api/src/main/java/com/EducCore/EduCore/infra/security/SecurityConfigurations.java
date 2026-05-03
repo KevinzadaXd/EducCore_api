@@ -40,6 +40,8 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.GET, "/api/banners").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/icons").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/banner-register").permitAll()
+                        .requestMatchers("/empresa").permitAll()
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
                         // Permite acessar o console do banco H2 pelo navegador
                         .requestMatchers("/h2-console/**").permitAll()
                         .anyRequest().authenticated()

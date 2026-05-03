@@ -2,6 +2,7 @@ package com.EducCore.EduCore.controller;
 
 import com.EducCore.EduCore.domain.User.Icon;
 import com.EducCore.EduCore.repositories.IconRepository;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/icons")
+@Tag(name = "Ícones", description = "Endpoints para gerenciamento de ícones")
 public class IconController {
 
     @Autowired
