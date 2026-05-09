@@ -9,7 +9,7 @@ import org.hibernate.type.SqlTypes;
 import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "empresas")
+@Table(name = "company")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,13 +26,13 @@ public class Empresa {
     private OffsetDateTime createdAt;
 
     private String name;
-    
+
     private String slogan;
-    
+
     private String cnpj;
-    
+
     private String email;
-    
+
     private String telephone;
 
     @Column(name = "wathsapp")
@@ -58,9 +58,11 @@ public class Empresa {
     @Column(name = "bannerurl", columnDefinition = "TEXT")
     private String bannerurl;
 
-    @JdbcTypeCode(SqlTypes.JSON)
-    @Column(name = "color")
-    private ColorData color;
+    @Column(name = "firstcolor", columnDefinition = "TEXT")
+    private String firstcolor;
+
+    @Column(name = "secondcolor", columnDefinition = "TEXT")
+    private String secondcolor;
 
     public Empresa(EmpresaRegisterDTO data) {
         this.name = data.name();
@@ -73,7 +75,8 @@ public class Empresa {
         this.zipCode = data.zipCode();
         this.address = data.address();
         this.socialMedia = data.socialMedia();
-        this.color = data.color();
+        this.firstcolor = data.firstcolor();
+        this.secondcolor = data.secondcolor();
         this.logourl = data.logourl();
         this.bannerurl = data.bannerurl();
     }
