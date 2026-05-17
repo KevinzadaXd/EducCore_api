@@ -28,8 +28,15 @@ public class AuthenticationController {
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data){
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
-        var token = tokenService.generateToken((User) auth.getPrincipal());
-        return ResponseEntity.ok(new LoginResponseDTO(token));
+
+        // Recupera o objeto do usuário autenticado completo
+        User user = (User) auth.getPrincipal();
+
+        // Gera o token jwt
+        var token = tokenService.generateToken(user);
+
+        // Retorna o token AND o nome direto da tabela do Supabase
+        return ResponseEntity.ok(new LoginResponseDTO(token, user.getName()));
     }
 
     @PostMapping("/register")
@@ -38,7 +45,6 @@ public class AuthenticationController {
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
 
-        // Passando todos os novos campos para o construtor do User
         User newUser = new User(
                 data.name(),
                 data.login(),

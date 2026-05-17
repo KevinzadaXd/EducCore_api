@@ -25,28 +25,37 @@ import java.util.List;
 public class SecurityConfigurations {
 
     @Autowired
-    SecurityFilter securityFilter;
+    private SecurityFilter securityFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf(csrf -> csrf.disable())
-                // Ativa a configuração de CORS definida abaixo
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
+                        // Auth
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/banners").permitAll()
+
+                        // Banners
+                        .requestMatchers("/api/banners", "/api/banners/**").permitAll()
+
+                        // ✅ CURSOS (CRUD completo liberado para o Front-end)
+                        .requestMatchers("/api/courses", "/api/courses/**").permitAll()
+
+                        // Outros Endpoints
                         .requestMatchers(HttpMethod.GET, "/api/icons").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/banner-register").permitAll()
+                        .requestMatchers("/professor", "/professor/**").permitAll()
                         .requestMatchers("/empresa").permitAll()
+
+                        // Documentação e Console
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
-                        // Permite acessar o console do banco H2 pelo navegador
                         .requestMatchers("/h2-console/**").permitAll()
+
                         .anyRequest().authenticated()
                 )
-                // Necessário para o H2-Console funcionar com frames
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()))
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
@@ -55,11 +64,9 @@ public class SecurityConfigurations {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        // Permite o endereço do seu Front-end Next.js
+        // Permite conexões do seu Front-end (Next.js / React)
         configuration.setAllowedOrigins(List.of("http://localhost:3000"));
-        // Métodos permitidos
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        // Headers permitidos (Content-Type e Authorization são essenciais para o JWT)
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Accept"));
         configuration.setAllowCredentials(true);
 
