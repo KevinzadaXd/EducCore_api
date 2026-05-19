@@ -43,6 +43,7 @@ public class SecurityConfigurations {
 
                         // ✅ CURSOS (CRUD completo liberado para o Front-end)
                         .requestMatchers("/api/courses", "/api/courses/**").permitAll()
+                        .requestMatchers("/api/pages", "/api/pages/**").permitAll()
 
                         // Outros Endpoints
                         .requestMatchers(HttpMethod.GET, "/api/icons").permitAll()
@@ -53,6 +54,7 @@ public class SecurityConfigurations {
                         // Documentação e Console
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
+
 
                         .anyRequest().authenticated()
                 )
