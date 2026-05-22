@@ -9,7 +9,7 @@ import org.hibernate.type.SqlTypes;
 import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "empresas")
+@Table(name = "company")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,13 +26,13 @@ public class Empresa {
     private OffsetDateTime createdAt;
 
     private String name;
-    
+
     private String slogan;
-    
+
     private String cnpj;
-    
+
     private String email;
-    
+
     private String telephone;
 
     @Column(name = "wathsapp")
@@ -58,9 +58,11 @@ public class Empresa {
     @Column(name = "bannerurl", columnDefinition = "TEXT")
     private String bannerurl;
 
-    @JdbcTypeCode(SqlTypes.JSON)
-    @Column(name = "color")
-    private ColorData color;
+    @Column(name = "firstcolor", columnDefinition = "TEXT")
+    private String firstcolor;
+
+    @Column(name = "secondcolor", columnDefinition = "TEXT")
+    private String secondcolor;
 
     public Empresa(EmpresaRegisterDTO data) {
         this.name = data.name();
@@ -73,8 +75,27 @@ public class Empresa {
         this.zipCode = data.zipCode();
         this.address = data.address();
         this.socialMedia = data.socialMedia();
-        this.color = data.color();
+        this.firstcolor = data.firstcolor();
+        this.secondcolor = data.secondcolor();
         this.logourl = data.logourl();
         this.bannerurl = data.bannerurl();
+    }
+
+    // Atualiza apenas os campos que vieram preenchidos (não nulos)
+    public void updateFromDTO(EmpresaRegisterDTO data) {
+        if (data.name() != null) this.name = data.name();
+        if (data.slogan() != null) this.slogan = data.slogan();
+        if (data.cnpj() != null) this.cnpj = data.cnpj();
+        if (data.email() != null) this.email = data.email();
+        if (data.telephone() != null) this.telephone = data.telephone();
+        if (data.whatsapp() != null) this.whatsapp = data.whatsapp();
+        if (data.operatingHours() != null) this.operatingHours = data.operatingHours();
+        if (data.zipCode() != null) this.zipCode = data.zipCode();
+        if (data.address() != null) this.address = data.address();
+        if (data.socialMedia() != null) this.socialMedia = data.socialMedia();
+        if (data.firstcolor() != null) this.firstcolor = data.firstcolor();
+        if (data.secondcolor() != null) this.secondcolor = data.secondcolor();
+        if (data.logourl() != null) this.logourl = data.logourl();
+        if (data.bannerurl() != null) this.bannerurl = data.bannerurl();
     }
 }

@@ -11,7 +11,8 @@ public record EmpresaRegisterDTO(
         String zipCode,
         AddressData address,
         SocialMediaData socialMedia,
-        ColorData color,
+        String firstcolor,
+        String secondcolor,
         String logourl,
         String bannerurl
 ) {}

@@ -1,5 +1,6 @@
 package com.EducCore.EduCore.domain.Empresa;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.OffsetDateTime;
@@ -22,10 +23,14 @@ public class Page {
 
     private String name;
 
-    @Column(name = "\"order\"") // Aspas evitam conflito com a palavra reservada ORDER do SQL
+    @Column(name = "\"order\"")
     private Long order;
 
     private Boolean status;
 
     private String description;
+
+    @OneToOne(mappedBy = "page", cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = true)
+    @JsonManagedReference
+    private About about;
 }

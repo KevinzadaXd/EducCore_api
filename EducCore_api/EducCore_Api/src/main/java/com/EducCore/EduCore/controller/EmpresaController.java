@@ -25,10 +25,25 @@ public class EmpresaController {
     public ResponseEntity<Empresa> create(@RequestBody @Valid EmpresaRegisterDTO data) {
         Empresa novaEmpresa = new Empresa(data);
         repository.save(novaEmpresa);
-        
+
         return ResponseEntity.ok(novaEmpresa);
     }
-    
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Empresa> update(@PathVariable Long id, @RequestBody @Valid EmpresaRegisterDTO data) {
+        var empresaOpt = repository.findById(id);
+
+        if (empresaOpt.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Empresa empresa = empresaOpt.get();
+        empresa.updateFromDTO(data);
+        repository.save(empresa);
+
+        return ResponseEntity.ok(empresa);
+    }
+
     @GetMapping
     public ResponseEntity<List<Empresa>> getAll() {
         var empresas = repository.findAll();

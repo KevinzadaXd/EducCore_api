@@ -49,7 +49,11 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.GET, "/api/icons").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/banner-register").permitAll()
                         .requestMatchers("/professor", "/professor/**").permitAll()
+                        .requestMatchers("/api/about", "/api/about/**").permitAll()
                         .requestMatchers("/empresa").permitAll()
+                        .requestMatchers("/empresa/**").permitAll()
+                        .requestMatchers("/api/faqs").permitAll()
+                        .requestMatchers("/api/faqs/**").permitAll()
 
                         // Documentação e Console
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
