@@ -28,14 +28,12 @@ public class AuthenticationController {
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data){
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
-
-        // Recupera o objeto do usuário autenticado completo
+  
         User user = (User) auth.getPrincipal();
 
-        // Gera o token jwt
         var token = tokenService.generateToken(user);
 
-        // Retorna o token AND o nome direto da tabela do Supabase
+ 
         return ResponseEntity.ok(new LoginResponseDTO(token, user.getName()));
     }
 

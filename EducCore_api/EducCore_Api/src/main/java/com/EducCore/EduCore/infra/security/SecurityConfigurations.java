@@ -54,8 +54,6 @@ public class SecurityConfigurations {
                         .requestMatchers("/empresa/**").permitAll()
                         .requestMatchers("/api/faqs").permitAll()
                         .requestMatchers("/api/faqs/**").permitAll()
-
-                        // Documentação e Console
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
 
