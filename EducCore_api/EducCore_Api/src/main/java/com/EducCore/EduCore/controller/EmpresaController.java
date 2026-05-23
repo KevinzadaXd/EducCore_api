@@ -25,7 +25,7 @@ public class EmpresaController {
     public ResponseEntity<Empresa> create(@RequestBody @Valid EmpresaRegisterDTO data) {
         Empresa novaEmpresa = new Empresa(data);
         repository.save(novaEmpresa);
-        
+
         return ResponseEntity.ok(novaEmpresa);
     }
 
@@ -43,7 +43,7 @@ public class EmpresaController {
 
         return ResponseEntity.ok(empresa);
     }
-    
+
     @GetMapping
     public ResponseEntity<List<Empresa>> getAll() {
         var empresas = repository.findAll();

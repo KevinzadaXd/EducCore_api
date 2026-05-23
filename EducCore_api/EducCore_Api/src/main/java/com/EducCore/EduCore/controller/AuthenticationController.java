@@ -28,11 +28,13 @@ public class AuthenticationController {
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data){
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
-        
-        var user = (User) auth.getPrincipal();
+  
+        User user = (User) auth.getPrincipal();
+
         var token = tokenService.generateToken(user);
-        
-        return ResponseEntity.ok(new LoginResponseDTO(token));
+
+ 
+        return ResponseEntity.ok(new LoginResponseDTO(token, user.getName()));
     }
 
     @PostMapping("/register")
@@ -41,7 +43,6 @@ public class AuthenticationController {
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
 
-        // Passando todos os novos campos para o construtor do User
         User newUser = new User(
                 data.name(),
                 data.login(),
