@@ -54,6 +54,11 @@ public class SecurityConfigurations {
                         .requestMatchers("/empresa/**").permitAll()
                         .requestMatchers("/api/faqs").permitAll()
                         .requestMatchers("/api/faqs/**").permitAll()
+
+                        // Módulos, Aulas e vínculos (sistema de conteúdo)
+                        .requestMatchers("/api/modules", "/api/modules/**").permitAll()
+                        .requestMatchers("/api/classes", "/api/classes/**").permitAll()
+                        .requestMatchers("/api/module-class", "/api/module-class/**").permitAll()
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
 
