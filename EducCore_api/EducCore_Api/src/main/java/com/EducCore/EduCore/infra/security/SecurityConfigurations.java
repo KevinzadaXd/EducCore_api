@@ -34,35 +34,39 @@ public class SecurityConfigurations {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        // Auth
+                        // Autenticação
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
 
                         // Banners
                         .requestMatchers("/api/banners", "/api/banners/**").permitAll()
 
-                        // ✅ CURSOS (CRUD completo liberado para o Front-end)
+                        // Cursos e Páginas
                         .requestMatchers("/api/courses", "/api/courses/**").permitAll()
                         .requestMatchers("/api/pages", "/api/pages/**").permitAll()
+
+                        // Grupos
+                        .requestMatchers("/api/groups", "/api/groups/**").permitAll()
+                        .requestMatchers("/api/users", "/api/users/**").permitAll()
 
                         // Outros Endpoints
                         .requestMatchers(HttpMethod.GET, "/api/icons").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/banner-register").permitAll()
                         .requestMatchers("/professor", "/professor/**").permitAll()
                         .requestMatchers("/api/about", "/api/about/**").permitAll()
-                        .requestMatchers("/empresa").permitAll()
-                        .requestMatchers("/empresa/**").permitAll()
-                        .requestMatchers("/api/faqs").permitAll()
-                        .requestMatchers("/api/faqs/**").permitAll()
+                        .requestMatchers("/empresa", "/empresa/**").permitAll()
+                        .requestMatchers("/api/faqs", "/api/faqs/**").permitAll()
 
-                        // Módulos, Aulas e vínculos (sistema de conteúdo)
+                        // Conteúdo (Módulos e Aulas)
                         .requestMatchers("/api/modules", "/api/modules/**").permitAll()
                         .requestMatchers("/api/classes", "/api/classes/**").permitAll()
                         .requestMatchers("/api/module-class", "/api/module-class/**").permitAll()
+
+                        // Documentação e Console
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
 
-
+                        // Qualquer outra rota exige autenticação
                         .anyRequest().authenticated()
                 )
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()))
@@ -73,11 +77,10 @@ public class SecurityConfigurations {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        // Permite conexões do seu Front-end (Next.js / React)
-        configuration.setAllowedOrigins(List.of("http://localhost:3000"));
+        configuration.setAllowedOrigins(List.of("*"));        // ✅ Qualquer origem
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Accept"));
-        configuration.setAllowCredentials(true);
+        configuration.setAllowedHeaders(List.of("*"));        // ✅ Todos os headers
+        configuration.setAllowCredentials(false);             // ✅ false é obrigatório quando origins = *
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
