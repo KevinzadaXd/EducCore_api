@@ -33,6 +33,13 @@ public class CourseController {
         return ResponseEntity.ok(repository.findAllByOrderByCreatedAtDesc());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getCourseById(@PathVariable Long id) {
+        return repository.findById(id)
+                .<ResponseEntity<?>>map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
     @PostMapping(consumes = {"multipart/form-data"})
     public ResponseEntity<?> createCourse(
             @RequestParam("title") String title,
