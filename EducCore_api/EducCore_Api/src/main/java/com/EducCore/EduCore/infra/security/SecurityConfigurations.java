@@ -45,7 +45,9 @@ public class SecurityConfigurations {
                         .requestMatchers("/api/courses", "/api/courses/**").permitAll()
                         .requestMatchers("/api/pages", "/api/pages/**").permitAll()
 
-                        // Grupos
+                        .requestMatchers("/api/products", "/api/products/**").permitAll()
+
+                        // Grupos e Usuários
                         .requestMatchers("/api/groups", "/api/groups/**").permitAll()
                         .requestMatchers("/api/users", "/api/users/**").permitAll()
 
@@ -78,10 +80,10 @@ public class SecurityConfigurations {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("*"));        // ✅ Qualquer origem
+        configuration.setAllowedOrigins(List.of("*"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("*"));        // ✅ Todos os headers
-        configuration.setAllowCredentials(false);             // ✅ false é obrigatório quando origins = *
+        configuration.setAllowedHeaders(List.of("*"));
+        configuration.setAllowCredentials(false);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
