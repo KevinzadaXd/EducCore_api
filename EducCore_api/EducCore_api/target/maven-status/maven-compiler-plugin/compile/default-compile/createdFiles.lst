@@ -5,6 +5,8 @@ com\EducCore\EduCore\domain\Empresa\EmpresaRegisterDTO.class
 com\EducCore\EduCore\domain\ModuleClass\ModuleClassRegisterDTO.class
 com\EducCore\EduCore\domain\User\AuthenticationDTO.class
 com\EducCore\EduCore\domain\User\LoginResponseDTO.class
+com\EducCore\EduCore\repositories\ProductRepository.class
+com\EducCore\EduCore\controller\ProductController.class
 com\EducCore\EduCore\domain\Empresa\ColorData.class
 com\EducCore\EduCore\controller\LessonController.class
 com\EducCore\EduCore\domain\Professor\Teacher.class
@@ -29,8 +31,10 @@ com\EducCore\EduCore\domain\ModuleClass\ModuleClass.class
 com\EducCore\EduCore\domain\Faq\FaqRegisterDTO.class
 com\EducCore\EduCore\repositories\UserGroupRepository.class
 com\EducCore\EduCore\domain\Empresa\AddressData.class
+com\EducCore\EduCore\controller\ProductController$ProductRequestDTO.class
 com\EducCore\EduCore\domain\User\CourseUser.class
 com\EducCore\EduCore\repositories\PageRepository.class
+com\EducCore\EduCore\domain\Product\Product.class
 com\EducCore\EduCore\domain\Lesson\Lesson.class
 com\EducCore\EduCore\domain\User\CourseGroup.class
 com\EducCore\EduCore\infra\docs\SpringDocConfigurations.class
@@ -38,6 +42,7 @@ com\EducCore\EduCore\controller\BannerRegisterController.class
 com\EducCore\EduCore\domain\User\CourseRequestDTO.class
 com\EducCore\EduCore\domain\Module\Module.class
 com\EducCore\EduCore\infra\security\TokenService.class
+com\EducCore\EduCore\domain\Product\CourseProduct.class
 com\EducCore\EduCore\repositories\CourseUserRepository.class
 com\EducCore\EduCore\domain\ModuleCourse\ModuleCourseRegisterDTO.class
 com\EducCore\EduCore\repositories\TeacherRepository.class
@@ -57,9 +62,11 @@ com\EducCore\EduCore\repositories\IconRepository.class
 com\EducCore\EduCore\domain\User\Group.class
 com\EducCore\EduCore\repositories\FaqRepository.class
 com\EducCore\EduCore\controller\AboutController.class
+com\EducCore\EduCore\domain\Product\ProductType.class
 com\EducCore\EduCore\domain\User\Icon.class
 com\EducCore\EduCore\domain\Course\Course.class
 com\EducCore\EduCore\infra\security\AuthorizationService.class
+com\EducCore\EduCore\repositories\CourseProductRepository.class
 com\EducCore\EduCore\domain\Empresa\SocialMediaData.class
 com\EducCore\EduCore\domain\User\User.class
 com\EducCore\EduCore\controller\GroupController.class
